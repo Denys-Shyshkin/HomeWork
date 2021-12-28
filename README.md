@@ -28,10 +28,8 @@ As a backend for this application RapidApi is used. In order for the application
 1. Register at [RapidApi](https://rapidapi.com/hub);
 2. Follow this [link](https://rapidapi.com/premium-apis-premium-apis-default/api/tiktok33/) and under tab **Pricing** choose a suitable plan for you;
 3. After that you should have available ***X-RapidAPI-Key*** at **Endpoints** tab, **Header Parameters** section;
-4. Paste this key into file `src/api/constants.ts`.
-
-<img width="470" alt="Screenshot 2021-11-17 at 11 03 25" src="https://user-images.githubusercontent.com/74503981/142169929-0bd6b041-6d50-4e1d-978b-3979b17e91ea.png">
-
+4. Paste this key into file `.env`.
+5. Restart application.
 
 **Have Fun!**
 

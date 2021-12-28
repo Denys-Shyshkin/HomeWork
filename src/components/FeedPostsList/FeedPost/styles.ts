@@ -2,7 +2,7 @@ import React from 'react';
 import Avatar, { AvatarProps } from '@mui/material/Avatar';
 import { styled } from '@mui/material/styles';
 
-import { isMobile } from '../../../constants';
+import { MobileProp } from '../../../constants';
 
 const StyledAvatar = styled(Avatar)<AvatarProps>(() => ({
   margin: 10,
@@ -25,7 +25,7 @@ interface StyledArticleProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const StyledArticle = styled('article', {
-  shouldForwardProp: (prop) => prop !== isMobile,
+  shouldForwardProp: (prop) => prop !== MobileProp,
 })<StyledArticleProps>(({ isMobile }) => ({
   display: isMobile ? 'block' : 'flex',
   alignItems: 'end',

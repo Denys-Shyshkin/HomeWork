@@ -3,7 +3,7 @@ import Stack, { StackProps } from '@mui/material/Stack';
 import Skeleton, { SkeletonProps } from '@mui/material/Skeleton';
 import { styled } from '@mui/material/styles';
 
-import { isMobile } from '../../../constants';
+import { MobileProp } from '../../../constants';
 
 const StyledStack = styled(Stack)<StackProps>(() => ({
   display: 'flex',
@@ -23,14 +23,14 @@ interface StyledDivProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const StyledDiv = styled('article', {
-  shouldForwardProp: (prop) => prop !== isMobile,
+  shouldForwardProp: (prop) => prop !== MobileProp,
 })<StyledDivProps>(({ isMobile }) => ({
   display: isMobile ? 'block' : 'flex',
   alignItems: 'end',
 }));
 
 const StyledSection = styled('div', {
-  shouldForwardProp: (prop) => prop !== isMobile,
+  shouldForwardProp: (prop) => prop !== MobileProp,
 })<StyledDivProps>(({ isMobile }) => ({
   display: isMobile ? 'none' : 'flex',
   flexDirection: 'column',

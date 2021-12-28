@@ -6,6 +6,9 @@ export enum Pages {
 
 export const VIDEO_HEIGHT = '400';
 
+export const getGridWidth = (isMobile: boolean | undefined) =>
+  isMobile ? 230 : 700;
+
 export const MAX_POSTS = 30;
 export const POSTS_PER_PAGE = 6;
 
@@ -15,7 +18,7 @@ export const colors = {
 };
 
 export const MEDIA_QUERY = '(max-width:600px)';
-export const isMobile = 'isMobile';
+export const MobileProp = 'isMobile';
 
 export enum ErrorMessages {
   WrongPage = 'Oops... Page Not Found',

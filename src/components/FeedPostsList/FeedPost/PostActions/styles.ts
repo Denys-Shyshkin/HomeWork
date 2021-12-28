@@ -2,14 +2,14 @@ import React from 'react';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import { styled } from '@mui/material/styles';
 
-import { colors, isMobile } from '../../../../constants';
+import { colors, MobileProp } from '../../../../constants';
 
 interface StyledDivProps extends React.HTMLAttributes<HTMLDivElement> {
   isMobile?: boolean
 }
 
 const StyledDiv = styled('div', {
-  shouldForwardProp: (prop) => prop !== isMobile,
+  shouldForwardProp: (prop) => prop !== MobileProp,
 })<StyledDivProps>(({ isMobile }) => ({
   display: 'flex',
   flexDirection: isMobile ? 'row' : 'column',

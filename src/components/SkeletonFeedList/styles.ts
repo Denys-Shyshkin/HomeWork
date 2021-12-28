@@ -1,14 +1,14 @@
 import Grid, { GridProps } from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
 
-import { isMobile } from '../../constants';
+import { MobileProp } from '../../constants';
 
 interface StyledGridContainerProps extends GridProps {
   isMobile?: boolean
 }
 
 const StyledGridContainer = styled(Grid, {
-  shouldForwardProp: (prop) => prop !== isMobile,
+  shouldForwardProp: (prop) => prop !== MobileProp,
 })<StyledGridContainerProps>(({ isMobile }) => ({
   paddingLeft: isMobile ? 10 : '30vw',
   marginTop: 50,

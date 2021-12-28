@@ -2,14 +2,14 @@ import React from 'react';
 import Typography, { TypographyProps } from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 
-import { isMobile } from '../../../../constants';
+import { MobileProp } from '../../../../constants';
 
 interface StyledDivProps extends React.HTMLAttributes<HTMLDivElement> {
   isMobile?: boolean
 }
 
 const StyledDiv = styled('div', {
-  shouldForwardProp: (prop) => prop !== isMobile,
+  shouldForwardProp: (prop) => prop !== MobileProp,
 })<StyledDivProps>(({ isMobile }) => ({
   maxWidth: isMobile ? 250 : 'auto',
 }));
