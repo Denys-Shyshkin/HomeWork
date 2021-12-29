@@ -34,24 +34,20 @@ const MenuAppBar = () => {
         setIsActive({ feed: false, profile: false });
         break;
     }
-  }, [location]);
-
-  const clickHandler = () => {
-    navigate(Pages.Feed);
-  };
+  }, [location.pathname]);
 
   return (
     <StyledBox>
       <StyledAppBar position="fixed">
         <Toolbar>
-          <StyledTypography variant="h6" onClick={clickHandler}>
+          <StyledTypography variant="h6" onClick={() => navigate(Pages.Feed)}>
             TikTuk :&#41;
           </StyledTypography>
           <div>
             <StyledIconButton
               size="large"
               aria-label="get trending feed"
-              onClick={clickHandler}
+              onClick={() => navigate(Pages.Feed)}
               color={isActive.feed ? 'default' : 'inherit'}
             >
               <MusicVideoIcon />

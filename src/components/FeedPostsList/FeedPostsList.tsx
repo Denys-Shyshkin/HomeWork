@@ -15,14 +15,14 @@ import { StyledGridContainer, StyledDiv } from './styles';
 import ErrorAlert from '../ErrorAlert';
 
 type Props = {
-  data: TrendingFeedList
+  allPosts: TrendingFeedList
 }
 
-const FeedPostsList = ({ data }: Props) => {
+const FeedPostsList = ({ allPosts }: Props) => {
   const [error, setError] = useState<string | null>(null);
 
   const matches = useMediaQuery(MEDIA_QUERY);
-  const displayedPosts = data?.slice(0, MAX_POSTS);
+  const displayedPosts = allPosts?.slice(0, MAX_POSTS);
 
   const [currentPage, setCurrentPage] = useState(1);
   const lastPostIndex = currentPage * POSTS_PER_PAGE;
@@ -33,7 +33,7 @@ const FeedPostsList = ({ data }: Props) => {
   useEffect(() => {
     setPosts(postsOnPage);
     window.scrollTo(0, 0);
-  }, [data, currentPage]);
+  }, [allPosts, currentPage]);
 
   const clickHandler = (event: MouseEvent) => {
     const clickTarget = event.target as HTMLElement;

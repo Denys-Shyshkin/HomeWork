@@ -29,7 +29,7 @@ const UserPostList = ({ data, isLoading }: Props) => {
   const [currentPage, setCurrentPage] = useState(1);
   const lastPostIndex = currentPage * POSTS_PER_PAGE;
   const firstPostindex = lastPostIndex - POSTS_PER_PAGE;
-  const postsOnPage = displayedPosts.slice(firstPostindex, lastPostIndex);
+  const postsOnPage = displayedPosts?.slice(firstPostindex, lastPostIndex);
   const [posts, setPosts] = useState(postsOnPage);
 
   useEffect(() => {
@@ -37,7 +37,7 @@ const UserPostList = ({ data, isLoading }: Props) => {
     window.scrollTo(0, 0);
   }, [data, currentPage]);
 
-  if (isLoading || !data.length) {
+  if (isLoading || !data?.length) {
     return <SkeletonPostsList />;
   }
 

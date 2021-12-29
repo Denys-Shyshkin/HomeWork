@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import ProfilePage from './pages/ProfilePage';
 import TrendingPage from './pages/TrendingPage';
-import AppBar from './components/MenuAppBar';
+import MenuAppBar from './components/MenuAppBar';
 import { Pages, ErrorMessages } from './constants';
 import ErrorAlert from './components/ErrorAlert';
 
@@ -11,7 +11,7 @@ const App = () => {
   return (
     <div>
       <header>
-        <AppBar />
+        <MenuAppBar />
       </header>
       <Routes>
         <Route path={Pages.Feed} element={<TrendingPage />} />

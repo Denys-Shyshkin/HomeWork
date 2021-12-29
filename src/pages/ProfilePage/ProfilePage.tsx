@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React from 'react';
 
 import UserCard from '../../components/UserCard';
 import UserPostList from '../../components/UserPostList';
@@ -8,69 +7,47 @@ import ErrorAlert, {
 } from '../../components/ErrorAlert/ErrorAlert';
 import { ErrorMessages } from '../../constants';
 import { UserInfo } from '../../types/userInfoTypes';
+import { UserFeedList } from '../../types/userFeedTypes';
 import { ErrorObject } from '../../types/trendingFeedTypes';
-import { fetchData } from '../../api';
-import { Endpoint, currentUser } from '../../api/constants';
+import { Endpoint } from '../../api/constants';
+import { useFetch } from '../../hooks/useFetch';
 
 const ProfilePage = () => {
-  const params = useParams();
-  const chosenUser = params.uniqueId;
-  const user = chosenUser || currentUser;
+  const {
+    data: userPosts,
+    isLoading: postsIsLoading,
+    isError: postsIsError,
+  } = useFetch(Endpoint.UserFeed);
 
-  const [profile, setProfile] = useState({});
-  const [userPosts, setUserPosts] = useState([]);
+  const {
+    data: profile,
+    isLoading: profileIsLoading,
+    isError: profileIsError,
+  } = useFetch(Endpoint.UserInfo);
 
-  const [postsIsLoading, setPostsIsLoading] = useState(false);
-  const [profileIsLoading, setProfileIsLoading] = useState(false);
+  const definedError =
+    profile && Object.keys(profile as ErrorObject).includes('message');
 
-  const [postsIsError, setPostsIsError] = useState(false);
-  const [profileIsError, setProfileIsError] = useState(false);
+  const wrongPageError =
+    profile && Object.keys(profile as ErrorObject).length === 0;
 
-  useEffect(() => {
-    const controller = new AbortController();
-    fetchData(
-      Endpoint.UserFeed + user,
-      controller,
-      setPostsIsLoading,
-      setUserPosts,
-      setPostsIsError
-    );
-    return () => controller.abort();
-  }, [user]);
+  const error = definedError || postsIsError || profileIsError;
 
-  useEffect(() => {
-    const controller = new AbortController();
-    fetchData(
-      Endpoint.UserInfo + user,
-      controller,
-      setProfileIsLoading,
-      setProfile,
-      setProfileIsError
-    );
-    return () => controller.abort();
-  }, [user]);
-
-  if (
-    Object.keys(profile).includes('message') ||
-    postsIsError ||
-    profileIsError
-  ) {
+  if (error) {
     return renderErrorAlert(profile as ErrorObject);
   }
 
-  if (Object.keys(profile).length === 0 && !profileIsLoading) {
+  if (wrongPageError && !profileIsLoading) {
     return <ErrorAlert message={ErrorMessages.WrongPage} />;
-  }
-
-  if (!Array.isArray(userPosts)) {
-    const userFeed = require('../../user-feed.json');
-    setUserPosts(userFeed.itemList);
   }
 
   return (
     <div>
       <UserCard profile={profile as UserInfo} isLoading={profileIsLoading} />
-      <UserPostList data={userPosts} isLoading={postsIsLoading} />
+      <UserPostList
+        data={userPosts as UserFeedList}
+        isLoading={postsIsLoading}
+      />
     </div>
   );
 };
