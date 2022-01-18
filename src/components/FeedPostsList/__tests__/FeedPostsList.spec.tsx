@@ -15,7 +15,7 @@ describe('<FeedPostsList />', () => {
     renderFeedPostsList = () => {
       return render(
         <MemoryRouter>
-          <FeedPostsList data={trendingFeedMock} />
+          <FeedPostsList allPosts={trendingFeedMock} />
         </MemoryRouter>
       );
     };
