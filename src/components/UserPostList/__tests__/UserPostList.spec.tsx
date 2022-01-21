@@ -1,38 +1,37 @@
 import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
-import { render } from '@testing-library/react';
+import { render, RenderResult } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 
 import UserPostList from '../UserPostList';
 import { userFeedMock } from '../../../domain/mockedData/userFeedMock';
+import { POSTS_PER_PAGE } from '../../../constants';
 
 describe('<UserPostList />', () => {
   window.scrollTo = jest.fn();
-  const skeletonsQty = 6;
+  let renderUserPostList: (a: boolean) => RenderResult;
   const playCount = userFeedMock[0].stats.playCount;
 
-  test('renders Component', () => {
-    const renderUserPostList = () => {
+  beforeEach(() => {
+    renderUserPostList = (isLoading: boolean) => {
       return render(
         <MemoryRouter>
-          <UserPostList allPosts={userFeedMock} isLoading={false} />
+          <UserPostList allPosts={userFeedMock} isLoading={isLoading} />
         </MemoryRouter>
       );
     };
-    const { getByText } = renderUserPostList();
+  });
+
+  test('renders Component', () => {
+    const { getByText } = renderUserPostList(false);
+
     expect(getByText(playCount)).toBeInTheDocument();
   });
 
   test('renders skeleton when loading', () => {
-    const renderUserPostList = () => {
-      return render(
-        <MemoryRouter>
-          <UserPostList allPosts={userFeedMock} isLoading={true} />
-        </MemoryRouter>
-      );
-    };
-    const { container } = renderUserPostList();
+    const { container } = renderUserPostList(true);
     const span = container.querySelectorAll('span');
-    expect(span.length).toBe(skeletonsQty);
+
+    expect(span.length).toEqual(POSTS_PER_PAGE);
   });
 });

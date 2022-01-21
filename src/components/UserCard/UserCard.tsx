@@ -18,7 +18,7 @@ import {
 import ErrorAlert from '../ErrorAlert';
 
 type Props = {
-  profile: UserInfo;
+  profile: UserInfo | undefined;
   isLoading: boolean;
 };
 
