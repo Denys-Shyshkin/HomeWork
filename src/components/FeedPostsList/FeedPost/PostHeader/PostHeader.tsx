@@ -4,15 +4,15 @@ import Link from '@mui/material/Link';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 import { MEDIA_QUERY } from '../../../../constants';
-import { Hashtag } from '../../../../types/trendingFeedTypes';
+import { Hashtag } from '../../../../domain/trendingFeedTypes';
 import { StyledDiv, StyledSection, StyledTypography } from './styles';
 
 type Props = {
-  nickName: string
-  text: string
-  hashtags: Hashtag[]
-  onClick: () => void
-}
+  nickName: string;
+  text: string;
+  hashtags: Hashtag[];
+  onClick: () => void;
+};
 
 const PostHeader = ({ nickName, text, hashtags, onClick }: Props) => {
   const matches = useMediaQuery(MEDIA_QUERY);

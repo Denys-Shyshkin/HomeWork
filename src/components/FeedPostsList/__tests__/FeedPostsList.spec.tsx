@@ -4,7 +4,7 @@ import { render, RenderResult } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 
 import FeedPostsList from '../FeedPostsList';
-import { trendingFeedMock } from '../../../mockedData/trendingFeedMock';
+import { trendingFeedMock } from '../../../domain/mockedData/trendingFeedMock';
 
 describe('<FeedPostsList />', () => {
   let renderFeedPostsList: () => RenderResult;

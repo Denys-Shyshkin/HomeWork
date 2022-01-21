@@ -6,14 +6,19 @@ import PostHeader from './PostHeader';
 import MediaCard from '../../MediaCard';
 import PostActions from './PostActions';
 import { Pages, MEDIA_QUERY } from '../../../constants';
-import { FeedPostItem } from '../../../types/trendingFeedTypes';
-import { StyledAvatar, StyledDiv, StyledSection, StyledArticle } from './styles';
+import { FeedPostItem } from '../../../domain/trendingFeedTypes';
+import {
+  StyledAvatar,
+  StyledDiv,
+  StyledSection,
+  StyledArticle,
+} from './styles';
 
 type Props = {
-  data: FeedPostItem
-  error: string | null
-  setError: (a: string | null) => void
-}
+  data: FeedPostItem;
+  error: string | null;
+  setError: (a: string | null) => void;
+};
 
 const FeedPost = ({ data, error, setError }: Props) => {
   const navigate = useNavigate();
