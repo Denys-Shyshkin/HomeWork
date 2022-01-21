@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { ErrorObject } from '../../types/trendingFeedTypes';
+import { ErrorObject } from '../../domain/trendingFeedTypes';
 import { Pages, ErrorMessages } from '../../constants';
 import { StyledSnackbar, StyledAlert } from './styles';
 
 type Props = {
-  message: string | undefined
-}
+  message: string | undefined;
+};
 
 export const renderErrorAlert = (profile: ErrorObject) => {
   return <ErrorAlert message={profile?.message} />;

@@ -4,7 +4,7 @@ import { render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 
 import UserCard from '../UserCard';
-import { userInfoMock } from '../../../mockedData/userInfoMock';
+import { userInfoMock } from '../../../domain/mockedData/userInfoMock';
 
 describe('<UserCard />', () => {
   const testName = userInfoMock.user.nickname;

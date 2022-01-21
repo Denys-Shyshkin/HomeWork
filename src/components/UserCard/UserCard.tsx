@@ -2,8 +2,8 @@ import React, { ReactElement } from 'react';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
-import { formatLargeNumber } from '../../utils/numbers';
-import { UserInfo } from '../../types/userInfoTypes';
+import { formatLargeNumber } from '../../helpers/numbers';
+import { UserInfo } from '../../domain/userInfoTypes';
 import { ErrorMessages } from '../../constants';
 import {
   StyledCard,
@@ -18,9 +18,9 @@ import {
 import ErrorAlert from '../ErrorAlert';
 
 type Props = {
-  profile: UserInfo
-  isLoading: boolean
-}
+  profile: UserInfo;
+  isLoading: boolean;
+};
 
 const UserCard = ({ profile, isLoading }: Props): ReactElement => {
   if (isLoading) {

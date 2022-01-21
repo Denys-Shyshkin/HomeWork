@@ -4,7 +4,7 @@ import { render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 
 import UserPostList from '../UserPostList';
-import { userFeedMock } from '../../../mockedData/userFeedMock';
+import { userFeedMock } from '../../../domain/mockedData/userFeedMock';
 
 describe('<UserPostList />', () => {
   window.scrollTo = jest.fn();
@@ -15,7 +15,7 @@ describe('<UserPostList />', () => {
     const renderUserPostList = () => {
       return render(
         <MemoryRouter>
-          <UserPostList data={userFeedMock} isLoading={false} />
+          <UserPostList allPosts={userFeedMock} isLoading={false} />
         </MemoryRouter>
       );
     };
@@ -27,7 +27,7 @@ describe('<UserPostList />', () => {
     const renderUserPostList = () => {
       return render(
         <MemoryRouter>
-          <UserPostList data={userFeedMock} isLoading={true} />
+          <UserPostList allPosts={userFeedMock} isLoading={true} />
         </MemoryRouter>
       );
     };

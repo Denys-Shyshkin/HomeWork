@@ -3,9 +3,9 @@ import React from 'react';
 import FeedPostList from '../../components/FeedPostsList';
 import SkeletonFeedList from '../../components/SkeletonFeedList';
 import { renderErrorAlert } from '../../components/ErrorAlert/ErrorAlert';
-import { TrendingFeedList, ErrorObject } from '../../types/trendingFeedTypes';
+import { TrendingFeedList, ErrorObject } from '../../domain/trendingFeedTypes';
 import { Endpoint } from '../../api/constants';
-import { useFetch } from '../../hooks/useFetch';
+import { useFetch } from '../../api/useFetch';
 
 const TrendingPage = () => {
   const { data: posts, isLoading, isError } = useFetch(Endpoint.TrendingFeed);
