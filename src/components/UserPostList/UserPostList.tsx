@@ -2,15 +2,16 @@ import React, { useState, MouseEvent } from 'react';
 import Grid from '@mui/material/Grid';
 import Pagination from '@mui/material/Pagination';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { SkeletonPostsList } from 'tiktuk-skeleton-loading';
 
 import UserPost from './UserPost';
-import SkeletonPostsList from '../SkeletonPostsList';
 import ErrorAlert from '../ErrorAlert';
 import {
   MAX_POSTS,
   POSTS_PER_PAGE,
   MEDIA_QUERY,
   ErrorMessages,
+  VIDEO_HEIGHT,
 } from '../../constants';
 import { UserFeedList, UserFeedItem } from '../../domain/userFeedTypes';
 import usePageHandler from '../../services/usePageHandler';
@@ -28,7 +29,13 @@ const UserPostList = ({ allPosts, isLoading }: Props) => {
   const { posts, setCurrentPage } = usePageHandler(allPosts);
 
   if (isLoading || !allPosts?.length) {
-    return <SkeletonPostsList />;
+    return (
+      <SkeletonPostsList
+        postsPerPage={POSTS_PER_PAGE}
+        mediaQuery={MEDIA_QUERY}
+        videoHeight={+VIDEO_HEIGHT}
+      />
+    );
   }
 
   const clickHandler = (event: MouseEvent) => {

@@ -3,13 +3,24 @@ import Grid from '@mui/material/Grid';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 import SkeletonPostItem from './SkeletonPostItem';
-import { POSTS_PER_PAGE, MEDIA_QUERY } from '../../constants';
 import { StyledGridContainer } from './styles';
 
-const SkeletonUserPosts = () => {
-  const matches = useMediaQuery(MEDIA_QUERY);
+type Props = {
+  postsPerPage: number;
+  mediaQuery: string;
+  videoHeight: number;
+};
 
-  const skeletonArray = Array(POSTS_PER_PAGE).fill(<SkeletonPostItem />);
+const SkeletonPostsList = ({
+  postsPerPage,
+  mediaQuery,
+  videoHeight,
+}: Props) => {
+  const matches = useMediaQuery(mediaQuery);
+
+  const skeletonArray = Array(postsPerPage).fill(
+    <SkeletonPostItem videoHeight={videoHeight} />
+  );
 
   return (
     <StyledGridContainer isMobile={matches} container spacing={1}>
@@ -24,4 +35,4 @@ const SkeletonUserPosts = () => {
   );
 };
 
-export default SkeletonUserPosts;
+export default SkeletonPostsList;
