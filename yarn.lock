@@ -11052,10 +11052,10 @@ thunky@^1.0.2:
   resolved "https://registry.yarnpkg.com/thunky/-/thunky-1.1.0.tgz#5abaf714a9405db0504732bbccd2cedd9ef9537d"
   integrity sha512-eHY7nBftgThBqOyHGVN+l8gF0BucP09fMo0oO/Lb0w1OF80dJv+lDVpXG60WMQvkcxAkNybKsrEIE3ZtKGmPrA==
 
-tiktuk-skeleton-loading@^1.0.0:
+tiktuk-loading@^1.0.0:
   version "1.0.0"
-  resolved "https://registry.yarnpkg.com/tiktuk-skeleton-loading/-/tiktuk-skeleton-loading-1.0.0.tgz#6dbb4028fddf5a22f54dcfd230f838012063352e"
-  integrity sha512-n3k96wuorkDtIPgxGNqCWPsUOKDcoitxQikSohKxN2hEtu/zmGVXDen67o++yfwxIX0mS1LLWenA5U1t0tnBHg==
+  resolved "https://registry.yarnpkg.com/tiktuk-loading/-/tiktuk-loading-1.0.0.tgz#d64c4b51afb186c250e952ca1d3b72e998dd132a"
+  integrity sha512-0+aDQqQpYapRW7PDp5Zgv+dsvuhiLiyFPYAWw/qZV9UoLmVv1+cmdqpKNrtZzgjl85ft2uDPVfvN9VKYYIGdzw==
   dependencies:
     "@emotion/react" "^11.7.1"
     "@emotion/styled" "^11.6.0"
