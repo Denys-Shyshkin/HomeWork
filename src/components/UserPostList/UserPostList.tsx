@@ -2,9 +2,9 @@ import React, { useState, MouseEvent } from 'react';
 import Grid from '@mui/material/Grid';
 import Pagination from '@mui/material/Pagination';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { SkeletonPostsList } from 'tiktuk-loading';
 
 import UserPost from './UserPost';
-import SkeletonPostsList from '../SkeletonPostsList';
 import ErrorAlert from '../ErrorAlert';
 import {
   MAX_POSTS,
@@ -28,7 +28,7 @@ const UserPostList = ({ allPosts, isLoading }: Props) => {
   const { posts, setCurrentPage } = usePageHandler(allPosts);
 
   if (isLoading || !allPosts?.length) {
-    return <SkeletonPostsList />;
+    return <SkeletonPostsList postsPerPage={POSTS_PER_PAGE} />;
   }
 
   const clickHandler = (event: MouseEvent) => {
