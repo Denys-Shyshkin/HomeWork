@@ -6,11 +6,11 @@ import ErrorAlert, {
   renderErrorAlert,
 } from '../../components/ErrorAlert/ErrorAlert';
 import { ErrorMessages } from '../../constants';
-import { UserInfo } from '../../types/userInfoTypes';
-import { UserFeedList } from '../../types/userFeedTypes';
-import { ErrorObject } from '../../types/trendingFeedTypes';
+import { UserInfo } from '../../domain/userInfoTypes';
+import { UserFeedList } from '../../domain/userFeedTypes';
+import { ErrorObject } from '../../domain/trendingFeedTypes';
 import { Endpoint } from '../../api/constants';
-import { useFetch } from '../../hooks/useFetch';
+import { useFetch } from '../../api/useFetch';
 
 const ProfilePage = () => {
   const {
@@ -45,7 +45,7 @@ const ProfilePage = () => {
     <div>
       <UserCard profile={profile as UserInfo} isLoading={profileIsLoading} />
       <UserPostList
-        data={userPosts as UserFeedList}
+        allPosts={userPosts as UserFeedList}
         isLoading={postsIsLoading}
       />
     </div>

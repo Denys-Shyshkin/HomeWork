@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { fetchData } from '../api';
-import { currentUser, Endpoint } from '../api/constants';
-import { TrendingFeedList, ErrorObject } from '../types/trendingFeedTypes';
-import { UserInfo } from '../types/userInfoTypes';
-import { UserFeedList } from '../types/userFeedTypes';
+import { fetchData } from './fetchData';
+import { currentUser, Endpoint } from './constants';
+import { TrendingFeedList, ErrorObject } from '../domain/trendingFeedTypes';
+import { UserInfo } from '../domain/userInfoTypes';
+import { UserFeedList } from '../domain/userFeedTypes';
 
 type DataType = TrendingFeedList | UserInfo | UserFeedList | ErrorObject;
 
@@ -20,7 +20,7 @@ export const useFetch = (endpoint: string) => {
 
   let adjustedEndpoint = endpoint;
   const dependancyArray = [];
-  const userFeed = require('../user-feed.json');
+  const userFeed = require('./user-feed.json');
 
   const resultCheck = (result: DataType) => {
     if (endpoint === Endpoint.UserFeed && !Array.isArray(result)) {

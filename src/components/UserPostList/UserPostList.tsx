@@ -1,44 +1,34 @@
-import React, { useState, useEffect, MouseEvent } from 'react';
+import React, { useState, MouseEvent } from 'react';
 import Grid from '@mui/material/Grid';
 import Pagination from '@mui/material/Pagination';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { SkeletonPostsList } from 'tiktuk-loading';
 
 import UserPost from './UserPost';
-import SkeletonPostsList from '../SkeletonPostsList';
+import ErrorAlert from '../ErrorAlert';
 import {
   MAX_POSTS,
   POSTS_PER_PAGE,
   MEDIA_QUERY,
   ErrorMessages,
 } from '../../constants';
-import { UserFeedList, UserFeedItem } from '../../types/userFeedTypes';
+import { UserFeedList, UserFeedItem } from '../../domain/userFeedTypes';
+import usePageHandler from '../../services/usePageHandler';
 import { StyledGridContainer, StyledDiv } from './styles';
-import ErrorAlert from '../ErrorAlert';
 
 type Props = {
-  data: UserFeedList
-  isLoading: boolean
-}
+  allPosts: UserFeedList;
+  isLoading: boolean;
+};
 
-const UserPostList = ({ data, isLoading }: Props) => {
+const UserPostList = ({ allPosts, isLoading }: Props) => {
   const [error, setError] = useState<string | null>(null);
 
   const matches = useMediaQuery(MEDIA_QUERY);
-  const displayedPosts = data?.slice(0, MAX_POSTS);
+  const { posts, setCurrentPage } = usePageHandler(allPosts);
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const lastPostIndex = currentPage * POSTS_PER_PAGE;
-  const firstPostindex = lastPostIndex - POSTS_PER_PAGE;
-  const postsOnPage = displayedPosts?.slice(firstPostindex, lastPostIndex);
-  const [posts, setPosts] = useState(postsOnPage);
-
-  useEffect(() => {
-    setPosts(postsOnPage);
-    window.scrollTo(0, 0);
-  }, [data, currentPage]);
-
-  if (isLoading || !data?.length) {
-    return <SkeletonPostsList />;
+  if (isLoading || !allPosts?.length) {
+    return <SkeletonPostsList postsPerPage={POSTS_PER_PAGE} />;
   }
 
   const clickHandler = (event: MouseEvent) => {
@@ -50,7 +40,7 @@ const UserPostList = ({ data, isLoading }: Props) => {
     <div>
       {error && <ErrorAlert message={ErrorMessages.VideoError} />}
       <StyledGridContainer isMobile={matches} container spacing={1}>
-        {posts.map((userPost: UserFeedItem) => {
+        {(posts as UserFeedList).map((userPost: UserFeedItem) => {
           return (
             <Grid key={userPost.id} item>
               <UserPost data={userPost} error={error} setError={setError} />

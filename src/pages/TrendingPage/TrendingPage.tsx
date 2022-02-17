@@ -1,17 +1,18 @@
 import React from 'react';
+import { SkeletonFeedList } from 'tiktuk-loading';
 
 import FeedPostList from '../../components/FeedPostsList';
-import SkeletonFeedList from '../../components/SkeletonFeedList';
 import { renderErrorAlert } from '../../components/ErrorAlert/ErrorAlert';
-import { TrendingFeedList, ErrorObject } from '../../types/trendingFeedTypes';
+import { TrendingFeedList, ErrorObject } from '../../domain/trendingFeedTypes';
 import { Endpoint } from '../../api/constants';
-import { useFetch } from '../../hooks/useFetch';
+import { useFetch } from '../../api/useFetch';
+import { POSTS_PER_PAGE } from '../../constants';
 
 const TrendingPage = () => {
   const { data: posts, isLoading, isError } = useFetch(Endpoint.TrendingFeed);
 
   if (isLoading) {
-    return <SkeletonFeedList />;
+    return <SkeletonFeedList postsPerPage={POSTS_PER_PAGE} />;
   }
 
   if (!Array.isArray(posts) || isError) {
